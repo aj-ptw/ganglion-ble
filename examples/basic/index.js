@@ -5,8 +5,11 @@ const onConnectClick = async () => {
     ganglion = new Ganglion();
     await ganglion.connect();
     await ganglion.start();
-    ganglion.stream.subscribe(sample => {
-        console.log('sample', sample);
+    let lastSampleNumber;
+    ganglion.stream.subscribe(samples => {
+        for (let i = 0; i < samples.length; i++) {
+            console.log(samples[i].sampleNumber);
+        }
     });
 };
 
